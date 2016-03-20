@@ -1,0 +1,27 @@
+{
+  "name": "jwranton_build",
+  "version": "1.0.0",
+  "homepage": "https://github.com/JWRanton/jwranton_build",
+  "authors": [
+    "JWRanton <jwranton@gmail.com>"
+  ],
+  "description": "A simple build system by @jwrnaton",
+  "keywords": [
+    "build",
+    "system",
+    "bower",
+    "npm",
+    "nodejs",
+    "gulpjs",
+    "browsersync",
+    "git"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -30,13 +30,6 @@ var config = {
 // minifyHTML
 gulp.task("html", function(){
     return gulp.src(config.paths.html.src)
-        .pipe(inject(
-            gulp.src(
-                mainBowerFiles(),
-                {read: false, cwd: "bower_components"}
-            ),
-            {name: "bower", addPrefix: "lib"}
-        ))
         .pipe(minifyHTML())
         .pipe(gulp.dest(config.paths.html.dest));
 });
@@ -59,12 +52,6 @@ gulp.task("css", function(){
         .pipe(cssmin())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.paths.css.dest));
-});
-
-// main-bower-files
-gulp.task("bower", function(){
-    return gulp.src(mainBowerFiles(), {base: "bower_components"})
-        .pipe(gulp.dest(config.paths.bower.dest));
 });
 
 // browserSync
