@@ -43,7 +43,7 @@ gulp.task("html", function(){
             {name: "bower", addPrefix: "lib"}
         ))
         // end inject
-        
+
         .pipe(minifyHTML())
         .pipe(gulp.dest(config.paths.html.dest));
 });
