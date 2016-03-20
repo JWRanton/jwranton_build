@@ -5,10 +5,9 @@ var gulp       = require("gulp"),
     cssmin     = require("gulp-cssmin"),
     sourcemaps = require("gulp-sourcemaps"),
     mainBowerFiles = require("main-bower-files"),
-    inject     = require("gulp-inject"),
-    livereload = require ("gulp-livereload"),
     browserSync = require ("browser-sync"),
-    mainBowerFiles = require("main-bower-files");
+    mainBowerFiles = require("main-bower-files"),
+    inject     = require("gulp-inject");
 
 
 var config = {
@@ -35,6 +34,16 @@ var config = {
 // minifyHTML
 gulp.task("html", function(){
     return gulp.src(config.paths.html.src)
+        //inject
+        .pipe(inject(
+            gulp.src(
+                mainBowerFiles(),
+                {read: false, cwd: "bower_components"}
+            ),
+            {name: "bower", addPrefix: "lib"}
+        ))
+        // end inject
+        
         .pipe(minifyHTML())
         .pipe(gulp.dest(config.paths.html.dest));
 });
@@ -73,7 +82,6 @@ gulp.task("bower", function(){
     return gulp.src(mainBowerFiles(), {base: "bower_components"})
         .pipe(gulp.dest(config.paths.bower.dest));
 });
-
 
 gulp.task("default", ["html", "scripts", "css", "browser-sync"], function(){
     gulp.watch(config.paths.html.src, ["html", browserSync.reload]);
