@@ -7,7 +7,8 @@ var gulp       = require("gulp"),
     mainBowerFiles = require("main-bower-files"),
     inject     = require("gulp-inject"),
     livereload = require ("gulp-livereload"),
-    browserSync = require ("browser-sync");
+    browserSync = require ("browser-sync"),
+    mainBowerFiles = require("main-bower-files");
 
 
 var config = {
@@ -23,6 +24,10 @@ var config = {
         css: {
             src: ["src/css/**/*.css"],
             dest: "dist/css"
+        },
+        bower: {
+            src: ["bower_components"],
+            dest: "dist/libs"
         }
     }
 }
@@ -61,6 +66,12 @@ gulp.task("browser-sync", function() {
             baseDir: "./dist"
         }
     });
+});
+
+// mainBowerFiles
+gulp.task("bower", function(){
+    return gulp.src(mainBowerFiles(), {base: "bower_components"})
+        .pipe(gulp.dest(config.paths.bower.dest));
 });
 
 
